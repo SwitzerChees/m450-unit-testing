@@ -4,6 +4,7 @@ const {
   sortByKey,
   deepClone,
   intersection,
+  divide,
 } = require("./extended_formatting");
 
 describe("Testing advanced functions", () => {
@@ -48,5 +49,35 @@ describe("Testing advanced functions", () => {
     const arr2 = [3, 4, 5, 6, 7];
     const result = intersection(arr1, arr2);
     expect(result).toEqual([3, 4, 5]);
+  });
+
+  // Positive test cases for divide
+  test("divide returns the correct result for valid numbers", () => {
+    const result = divide(10, 2);
+    expect(result).toBe(5);
+  });
+
+  test("divide handles decimal numbers correctly", () => {
+    const result = divide(7, 2);
+    expect(result).toBeCloseTo(3.5); // Use toBeCloseTo for floating point comparisons
+  });
+
+  // Negative test cases for divide
+  test("divide throws error when dividing by zero", () => {
+    expect(() => {
+      divide(10, 0);
+    }).toThrow("Division durch Null ist nicht erlaubt.");
+  });
+
+  test("divide throws error when the dividend is not a number", () => {
+    expect(() => {
+      divide("ten", 2);
+    }).toThrow("Ungültige Eingabe. 'a' und 'b' sollten Zahlen sein.");
+  });
+
+  test("divide throws error when the divisor is not a number", () => {
+    expect(() => {
+      divide(10, "two");
+    }).toThrow("Ungültige Eingabe. 'a' und 'b' sollten Zahlen sein.");
   });
 });

@@ -27,9 +27,7 @@ const letterFrequency = (word) => {
  * @return {Array} Ein nach Schlüssel sortiertes Array von Objekten.
  */
 const sortByKey = (arr, key) => {
-  return [...arr].sort((a, b) =>
-    a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0
-  );
+  return arr.sort((a, b) => a[key] - b[key]);
 };
 
 /**
@@ -51,10 +49,28 @@ const intersection = (arr1, arr2) => {
   return arr1.filter((value) => arr2.includes(value));
 };
 
+/**
+ * Teilt zwei Zahlen.
+ * @param {number} a - Der Dividend.
+ * @param {number} b - Der Divisor.
+ * @return {number} Das Ergebnis der Division.
+ * @throws {Error} Wenn b 0 ist oder wenn a oder b keine Zahlen sind.
+ */
+const divide = (a, b) => {
+  if (typeof a !== "number" || typeof b !== "number") {
+    throw new Error("Ungültige Eingabe. 'a' und 'b' sollten Zahlen sein.");
+  }
+  if (b === 0) {
+    throw new Error("Division durch Null ist nicht erlaubt.");
+  }
+  return a / b;
+};
+
 module.exports = {
   uniqueValues,
   letterFrequency,
   sortByKey,
   deepClone,
   intersection,
+  divide,
 };
